@@ -12,8 +12,12 @@ COPY . .
 
 RUN pnpm build
 
+WORKDIR /app/.medusa/server
+
+RUN pnpm install --production
+
 EXPOSE 9000
 
 ENV NODE_ENV=production
 
-CMD ["pnpm", "start"]
+CMD ["node_modules/.bin/medusa", "start"]
